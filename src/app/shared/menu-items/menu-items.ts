@@ -8,7 +8,11 @@ export interface Menu {
 }
 
 const MENUITEMS = [
-  { state: 'dashboard', name: 'Dashboard', type: 'link', icon: 'av_timer' },
+  { state: 'dashboard', type: 'link', name: 'Conócenos', icon: 'assignment' },
+  { state: 'appointment', type: 'link', name: 'Agendar citas', icon: 'event' },
+  { state: 'specialist', type: 'link', name: 'Especialistas', icon: 'accessibility' },
+  { state: 'surgery', type: 'link', name: 'Servicios de cirugía', icon: 'local_hospital' },
+  { state: 'house', type: 'link', name: 'Médico en casa', icon: 'house' },
   { state: 'button', type: 'link', name: 'Buttons', icon: 'crop_7_5' },
   { state: 'grid', type: 'link', name: 'Grid List', icon: 'view_comfy' },
   { state: 'lists', type: 'link', name: 'Lists', icon: 'view_list' },

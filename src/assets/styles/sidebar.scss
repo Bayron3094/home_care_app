@@ -82,10 +82,10 @@ use profile section
 
 .user-profile {  
     position: relative;
-    background-size:cover;
+    background-size:auto;
     
     .profile-img {
-        width: 50px;
+        max-width: 50px;
         margin-left: 30px;
         padding: 31px 0;
         border-radius: 100%;
@@ -173,4 +173,9 @@ use profile section
     &.mat-sidenav ~ .mat-drawer-content {
           margin-left: 0px!important;
         }
+}
+
+.img_sidebar {
+    padding: 15px 0 0 15px;
+    max-width: 13em !important;
 }
