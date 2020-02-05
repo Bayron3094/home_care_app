@@ -31,6 +31,10 @@ import { TooltipComponent } from './tooltip/tooltip.component';
 import { SnackbarComponent } from './snackbar/snackbar.component';
 import { SliderComponent } from './slider/slider.component';
 import { SlideToggleComponent } from './slide-toggle/slide-toggle.component';
+import { AppointmentComponent } from './appointment/appointment.component';
+import { SpecialistComponent } from './specialist/specialist.component';
+import { SurgeryComponent } from './surgery/surgery.component';
+import { HouseComponent } from './house/house.component';
 
 @NgModule({
   imports: [
@@ -62,7 +66,11 @@ import { SlideToggleComponent } from './slide-toggle/slide-toggle.component';
     TooltipComponent,
     SnackbarComponent,
     SliderComponent,
-    SlideToggleComponent
+    SlideToggleComponent,
+    AppointmentComponent,
+    SpecialistComponent,
+    SurgeryComponent,
+    HouseComponent
   ]
 })
 export class MaterialComponentsModule {}

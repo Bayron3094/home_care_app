@@ -17,7 +17,32 @@ import { SnackbarComponent } from './snackbar/snackbar.component';
 import { SliderComponent } from './slider/slider.component';
 import { SlideToggleComponent } from './slide-toggle/slide-toggle.component';
 
+import { AppointmentComponent } from './appointment/appointment.component';
+import { SpecialistComponent } from './specialist/specialist.component';
+import { SurgeryComponent } from './surgery/surgery.component';
+import { HouseComponent } from './house/house.component';
+
+
 export const MaterialRoutes: Routes = [
+  //News components
+  {
+    path: 'appointment',
+    component: AppointmentComponent 
+  },
+  {
+    path: 'specialist',
+    component: SpecialistComponent 
+  },
+  {
+    path: 'surgery',
+    component: SurgeryComponent 
+  },
+  {
+    path: 'house_doctor',
+    component: HouseComponent 
+  },
+  //End commponents
+
   {
     path: 'button',
     component: ButtonsComponent
