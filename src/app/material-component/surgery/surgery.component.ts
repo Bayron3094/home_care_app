@@ -27,7 +27,9 @@ export class SurgeryComponent implements OnInit {
       firstCtrl: ['', Validators.required]
     });
     this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
+      secondCtrlDate: ['', Validators.required],
+      secondCtrlTime: ['', Validators.required],
+      secondCtrlEps: ['', Validators.required],
     });
     this.filteredOptions = this.firstFormGroup.controls.firstCtrl.valueChanges 
       .pipe(

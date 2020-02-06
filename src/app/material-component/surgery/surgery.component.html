@@ -35,15 +35,15 @@
                             <mat-card-content>
                                 <div style="display: block;">
                                     <mat-form-field style="max-width: 25%;">
-                                        <input matInput [matDatepicker]="picker" placeholder="Fecha" formControlName="secondCtrl" required>
-                                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                        <input matInput [matDatepicker]="picker" placeholder="Fecha" formControlName="secondCtrlDate" required>
+                                        <mat-datepicker-toggle matSuffix [for]="picker" required></mat-datepicker-toggle>
                                         <mat-datepicker #picker></mat-datepicker>
                                     </mat-form-field>
                                     <mat-form-field style="max-width: 20%; margin-left: 15px;">
-                                        <input type="time" matInput placeholder="Hora" formControlName="secondCtrl" required>
+                                        <input type="time" matInput placeholder="Hora" formControlName="secondCtrlTime" required>
                                     </mat-form-field>
                                     <mat-form-field style="max-width: 40%; margin-left: 15px;">
-                                        <input matInput placeholder="EPS" formControlName="secondCtrl" required>
+                                        <input matInput placeholder="EPS" formControlName="secondCtrlEps" required>
                                     </mat-form-field>
                                 </div>
                             </mat-card-content>

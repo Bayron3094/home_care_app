@@ -35,11 +35,22 @@ export class HouseComponent implements OnInit {
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
+      firstCtrlName: ['', Validators.required],
+      firstCtrlSurname: ['', Validators.required],
+      firstCtrlNum: ['', Validators.required],
+      firstCtrlBirth: ['', Validators.required],
+      firstCtrlPhone: ['', Validators.required],
+      firstCtrlNeigh: ['', Validators.required],
+      firstCtrlAddress: ['', Validators.required],
     });
     this.secondFormGroup = this._formBuilder.group({
       secondCtrlEspec: ['', Validators.required],
-      secondCtrlDoctor: ['', Validators.required]
+      secondCtrlDoctor: ['', Validators.required],
+      secondCtrlDate: ['', Validators.required],
+      secondCtrlTime: ['', Validators.required],
+      secondCtrlEps: ['', Validators.required],
+      secondCtrlRegime: ['', Validators.required],
+      secondCtrlService: ['', Validators.required]
     });
 
     this.filteredDoctors = this.secondFormGroup.controls.secondCtrlDoctor.valueChanges //.firstCtrl.valueChanges

@@ -7,40 +7,43 @@
                         class="bg-success text-white rounded font-12 pl-5 pr-5">New</span></mat-card-title>
                 <mat-card-subtitle>Por favor llena cuidadosamente los datos.</mat-card-subtitle>
 
-                <mat-vertical-stepper #steppervarient class="m-t-20">
+                <mat-vertical-stepper #steppervarient  linear="true" class="m-t-20">
                     <mat-step [stepControl]="firstFormGroup">
                         <form [formGroup]="firstFormGroup">
                             <ng-template matStepLabel>Datos personales</ng-template>
                             <div style="display: block;">
                                 <mat-form-field style="max-width: 35%;">
-                                    <input matInput placeholder="Nombres" formControlName="firstCtrl" required>
+                                    <input matInput placeholder="Nombres" formControlName="firstCtrlName" required>
                                 </mat-form-field>
+
                                 <mat-form-field style="max-width: 35%; margin-left: 15px;">
-                                    <input matInput placeholder="Apellidos" formControlName="firstCtrl" required>
+                                    <input matInput placeholder="Apellidos" formControlName="firstCtrlSurname" required>
                                 </mat-form-field>
+
                                 <mat-form-field style="max-width: 20%; margin-left: 15px;">
-                                    <input matInput placeholder="N° cédula" formControlName="firstCtrl" required>
+                                    <input matInput placeholder="N° cédula" formControlName="firstCtrlNum" required>
                                 </mat-form-field>
                             </div>
                             <div style="display: block;">
                                 <mat-form-field style="max-width: 20%;">
-                                    <input matInput placeholder="Fecha nacimiento" formControlName="firstCtrl"
-                                        required>
+                                    <input matInput [matDatepicker]="pickerBirth" placeholder="Fecha de nacimiento" formControlName="firstCtrlBirth" required>
+                                    <mat-datepicker-toggle matSuffix [for]="pickerBirth" required></mat-datepicker-toggle>
+                                    <mat-datepicker #pickerBirth></mat-datepicker>
                                 </mat-form-field>
                                 <mat-form-field style="max-width: 25%; margin-left: 15px;">
-                                    <input matInput placeholder="Celular" formControlName="firstCtrl"
+                                    <input matInput placeholder="Celular" formControlName="firstCtrlPhone"
                                         required>
                                 </mat-form-field>
                                 <mat-form-field style="max-width: 40%; margin-left: 15px;">
-                                    <input matInput placeholder="Dirección" formControlName="firstCtrl" required>
+                                    <input matInput placeholder="Dirección" formControlName="firstCtrlAddress" required>
                                 </mat-form-field>
                             </div>
                             <div>
-                                <button mat-raised-button matStepperNext color="accent">Continuar</button>
+                                <button mat-raised-button matStepperNext [disabled]="firstFormGroup.invalid" color="accent">Continuar</button>
                             </div>
                         </form>
                     </mat-step>
-                    <mat-step [stepControl]="secondFormGroup">
+                    <mat-step [stepControl]="secondFormGroup" errorMessage="Address is required.">
                         <form [formGroup]="secondFormGroup">
                             <ng-template matStepLabel>Elige tu especialista</ng-template>
                             <div style="display: block;">
@@ -50,7 +53,7 @@
                                         [(ngModel)]="selection" (ngModelChange)="selectSpeci($event)">
                                     <mat-autocomplete #autoDoc="matAutocomplete">
                                         <mat-option *ngFor="let option of filteredDoctors | async"
-                                            [value]="option.name">
+                                            [value]="option.name" required>
                                             {{option.name}} - {{option.specialty}}
                                         </mat-option>
                                     </mat-autocomplete>
@@ -69,15 +72,15 @@
                             </div>
                             <div style="display: block;">
                                 <mat-form-field style="max-width: 25%;">
-                                    <input matInput [matDatepicker]="picker" placeholder="Fecha" formControlName="secondCtrlDoctor" required>
+                                    <input matInput [matDatepicker]="picker" placeholder="Fecha" formControlName="secondCtrlDate" required>
                                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                     <mat-datepicker #picker></mat-datepicker>
                                 </mat-form-field>
                                 <mat-form-field style="max-width: 20%; margin-left: 15px;">
-                                    <input type="time" matInput placeholder="Hora" formControlName="secondCtrlDoctor" required>
+                                    <input type="time" matInput placeholder="Hora" formControlName="secondCtrlTime" required>
                                 </mat-form-field>
                                 <mat-form-field style="max-width: 40%; margin-left: 15px;">
-                                    <input matInput placeholder="EPS" formControlName="secondCtrlDoctor" required>
+                                    <input matInput placeholder="EPS" formControlName="secondCtrlEps" required>
                                 </mat-form-field>
                             </div>
                             <div class="button-row">

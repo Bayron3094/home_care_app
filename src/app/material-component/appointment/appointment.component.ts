@@ -27,11 +27,19 @@ export class AppointmentComponent implements OnInit {
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
+      firstCtrlName: ['', Validators.required],
+      firstCtrlSurname: ['', Validators.required],
+      firstCtrlNum: ['', Validators.required],
+      firstCtrlBirth: ['', Validators.required],
+      firstCtrlPhone: ['', Validators.required],
+      firstCtrlAddress: ['', Validators.required],
     });
     this.secondFormGroup = this._formBuilder.group({
       secondCtrlEspec: ['', Validators.required],
-      secondCtrlDoctor: ['', Validators.required]
+      secondCtrlDoctor: ['', Validators.required],
+      secondCtrlDate: ['', Validators.required],
+      secondCtrlTime: ['', Validators.required],
+      secondCtrlEps: ['', Validators.required],
     });
     /* this.filteredSpecialties = this.secondFormGroup.controls.secondCtrlEspec.valueChanges //.firstCtrl.valueChanges
       .pipe(
