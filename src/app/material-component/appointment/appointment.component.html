@@ -24,10 +24,12 @@
                             </div>
                             <div style="display: block;">
                                 <mat-form-field style="max-width: 20%;">
-                                    <input matInput placeholder="Tipo Identificación" formControlName="firstCtrl" required>
+                                    <input matInput placeholder="Tipo Identificación" formControlName="firstCtrl"
+                                        required>
                                 </mat-form-field>
                                 <mat-form-field style="max-width: 25%; margin-left: 15px;">
-                                    <input matInput placeholder="N° Identificación" formControlName="firstCtrl" required>
+                                    <input matInput placeholder="N° Identificación" formControlName="firstCtrl"
+                                        required>
                                 </mat-form-field>
                                 <mat-form-field style="max-width: 40%; margin-left: 15px;">
                                     <input matInput placeholder="Dirección" formControlName="firstCtrl" required>
@@ -42,22 +44,40 @@
                         <form [formGroup]="secondFormGroup">
                             <ng-template matStepLabel>Elige tu especialista</ng-template>
                             <div style="display: block;">
-                                <mat-form-field style="max-width: 40%;">
-                                    <input matInput placeholder="Nombre del especialista" formControlName="secondCtrl" required>
+                                <mat-form-field style="max-width: 45%;">
+                                    <input type="text" placeholder="Especialista..." aria-label="Number" matInput
+                                        required formControlName="secondCtrlDoctor" [matAutocomplete]="autoDoc"
+                                        [(ngModel)]="selection" (ngModelChange)="selectSpeci($event)">
+                                    <mat-autocomplete #autoDoc="matAutocomplete">
+                                        <mat-option *ngFor="let option of filteredDoctors | async"
+                                            [value]="option.name">
+                                            {{option.name}} - {{option.specialty}}
+                                        </mat-option>
+                                    </mat-autocomplete>
                                 </mat-form-field>
                                 <mat-form-field style="max-width: 35%; margin-left: 15px;">
-                                    <input matInput placeholder="Especialidad" formControlName="secondCtrl" required>
+                                    <input matInput placeholder="Especialidad" formControlName="secondCtrlEspec"
+                                        required [(ngModel)]="specialtySelect">
+                                    <!-- <input type="text" placeholder="Especialidad..." aria-label="Number" matInput
+                                        required formControlName="secondCtrlEspec" [matAutocomplete]="autoSpec" [(ngModel)]="specModel">
+                                    <mat-autocomplete #autoSpec="matAutocomplete">
+                                        <mat-option *ngFor="let option of filteredSpecialties | async" [value]="option">
+                                            {{option}}
+                                        </mat-option>
+                                    </mat-autocomplete> -->
                                 </mat-form-field>
                             </div>
                             <div style="display: block;">
                                 <mat-form-field style="max-width: 25%;">
-                                    <input matInput placeholder="Fecha" formControlName="secondCtrl" required>
+                                    <input matInput [matDatepicker]="picker" placeholder="Fecha" formControlName="secondCtrlDoctor" required>
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>
                                 </mat-form-field>
                                 <mat-form-field style="max-width: 20%; margin-left: 15px;">
-                                    <input matInput placeholder="Hora" formControlName="secondCtrl" required>
+                                    <input type="time" matInput placeholder="Hora" formControlName="secondCtrlDoctor" required>
                                 </mat-form-field>
                                 <mat-form-field style="max-width: 40%; margin-left: 15px;">
-                                    <input matInput placeholder="EPS" formControlName="secondCtrl" required>
+                                    <input matInput placeholder="EPS" formControlName="secondCtrlDoctor" required>
                                 </mat-form-field>
                             </div>
                             <div class="button-row">
@@ -68,7 +88,7 @@
                     </mat-step>
                     <mat-step>
                         <ng-template matStepLabel>Finalizado</ng-template>
-                        <p style="padding: 5px;">Tu cita ha sido agendada exitosamente.</p> 
+                        <p style="padding: 5px;">Tu cita ha sido agendada exitosamente.</p>
                         <div class="button-row">
                             <button mat-raised-button color="primary" matStepperPrevious>Volver</button>
                             <button mat-raised-button color="warn" (click)="steppervarient.reset()">Reiniciar</button>
