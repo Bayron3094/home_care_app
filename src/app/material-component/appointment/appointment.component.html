@@ -1,1 +1,81 @@
-<p>appointment works!</p>
+<div fxLayout="row" fxLayoutWrap="wrap">
+    <!-- Card column -->
+    <div fxFlex.gt-sm="100%" fxFlex="100">
+        <mat-card>
+            <mat-card-content>
+                <mat-card-title>Agenda tu cita médica <span
+                        class="bg-success text-white rounded font-12 pl-5 pr-5">New</span></mat-card-title>
+                <mat-card-subtitle>Por favor llena cuidadosamente los datos.</mat-card-subtitle>
+
+                <mat-vertical-stepper #steppervarient class="m-t-20">
+                    <mat-step [stepControl]="firstFormGroup">
+                        <form [formGroup]="firstFormGroup">
+                            <ng-template matStepLabel>Datos personales</ng-template>
+                            <div style="display: block;">
+                                <mat-form-field style="max-width: 35%;">
+                                    <input matInput placeholder="Nombres" formControlName="firstCtrl" required>
+                                </mat-form-field>
+                                <mat-form-field style="max-width: 35%; margin-left: 15px;">
+                                    <input matInput placeholder="Apellidos" formControlName="firstCtrl" required>
+                                </mat-form-field>
+                                <mat-form-field style="max-width: 20%; margin-left: 15px;">
+                                    <input matInput placeholder="Teléfono" formControlName="firstCtrl" required>
+                                </mat-form-field>
+                            </div>
+                            <div style="display: block;">
+                                <mat-form-field style="max-width: 20%;">
+                                    <input matInput placeholder="Tipo Identificación" formControlName="firstCtrl" required>
+                                </mat-form-field>
+                                <mat-form-field style="max-width: 25%; margin-left: 15px;">
+                                    <input matInput placeholder="N° Identificación" formControlName="firstCtrl" required>
+                                </mat-form-field>
+                                <mat-form-field style="max-width: 40%; margin-left: 15px;">
+                                    <input matInput placeholder="Dirección" formControlName="firstCtrl" required>
+                                </mat-form-field>
+                            </div>
+                            <div>
+                                <button mat-raised-button matStepperNext color="accent">Continuar</button>
+                            </div>
+                        </form>
+                    </mat-step>
+                    <mat-step [stepControl]="secondFormGroup">
+                        <form [formGroup]="secondFormGroup">
+                            <ng-template matStepLabel>Elige tu especialista</ng-template>
+                            <div style="display: block;">
+                                <mat-form-field style="max-width: 40%;">
+                                    <input matInput placeholder="Nombre del especialista" formControlName="secondCtrl" required>
+                                </mat-form-field>
+                                <mat-form-field style="max-width: 35%; margin-left: 15px;">
+                                    <input matInput placeholder="Especialidad" formControlName="secondCtrl" required>
+                                </mat-form-field>
+                            </div>
+                            <div style="display: block;">
+                                <mat-form-field style="max-width: 25%;">
+                                    <input matInput placeholder="Fecha" formControlName="secondCtrl" required>
+                                </mat-form-field>
+                                <mat-form-field style="max-width: 20%; margin-left: 15px;">
+                                    <input matInput placeholder="Hora" formControlName="secondCtrl" required>
+                                </mat-form-field>
+                                <mat-form-field style="max-width: 40%; margin-left: 15px;">
+                                    <input matInput placeholder="EPS" formControlName="secondCtrl" required>
+                                </mat-form-field>
+                            </div>
+                            <div class="button-row">
+                                <button mat-raised-button color="primary" matStepperPrevious>Volver</button>
+                                <button mat-raised-button color="accent" matStepperNext>Finalizar</button>
+                            </div>
+                        </form>
+                    </mat-step>
+                    <mat-step>
+                        <ng-template matStepLabel>Finalizado</ng-template>
+                        <p style="padding: 5px;">Tu cita ha sido agendada exitosamente.</p> 
+                        <div class="button-row">
+                            <button mat-raised-button color="primary" matStepperPrevious>Volver</button>
+                            <button mat-raised-button color="warn" (click)="steppervarient.reset()">Reiniciar</button>
+                        </div>
+                    </mat-step>
+                </mat-vertical-stepper>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

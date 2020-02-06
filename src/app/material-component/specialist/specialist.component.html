@@ -1,1 +1,67 @@
-<p>specialist works!</p>
+<div fxLayout="row" fxLayoutWrap="wrap">
+	<!-- Card column -->
+	<div fxFlex.gt-sm="100%" fxFlex="100">
+		<mat-card>
+			<mat-card-content>
+				<mat-card-title class="m-t-3">Consulta de médicos especialistas</mat-card-title>
+				<mat-card-subtitle>Por favor elige la especialidad para consultar el especialista. </mat-card-subtitle>
+
+				<mat-horizontal-stepper linear #steppererror>
+					<mat-step [stepControl]="firstFormGroup">
+						<form [formGroup]="firstFormGroup">
+							<ng-template matStepLabel>Especialidad</ng-template>
+							<mat-form-field>
+								<!-- <input matInput placeholder="Last name, First name" formControlName="errorfirstCtrl" required> -->
+								<input type="text" placeholder="Selecciona una" aria-label="Number" matInput required
+									formControlName="firstCtrl" [matAutocomplete]="auto">
+								<mat-autocomplete #auto="matAutocomplete">
+									<mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+										{{option}}
+									</mat-option>
+								</mat-autocomplete>
+								<mat-error *ngIf="firstFormGroup.controls['firstCtrl'].errors?.required">
+									La especialidad es requerida.
+								</mat-error>
+							</mat-form-field>
+							<div style="margin-top: 5px;">
+								<button mat-raised-button 
+									[disabled]="firstFormGroup.invalid"	
+								color="accent" matStepperNext (click)="selected()">Continuar</button>
+							</div>
+						</form>
+					</mat-step>
+					<mat-step [stepControl]="secondFormGroup" errorMessage="Address is required.">
+						<form [formGroup]="secondFormGroup">
+							<ng-template matStepLabel>Especialistas</ng-template>
+							<mat-card-content>
+								<div class="d-flex no-blcok" *ngFor="let doctor of listDoctor">
+									<div class="m-r-20">
+										<img class="img-circle" width="120" src="assets/images/users/d1.jpg" alt="Image"> </div>
+									<div class="m-r-20" class="p-b-20 b-b m-b-30">
+										<h3 class="m-0">{{doctor.name}}</h3>
+										<p class="text-muted"> {{doctor.specialty}}</p>
+										<button mat-raised-button color="accent" (click)="picker.open()">Disponibilidad</button>
+										<mat-form-field>
+											<input matInput [matDatepicker]="picker" placeholder="Elige tu fecha">
+											<mat-datepicker #picker></mat-datepicker>
+										</mat-form-field>
+									</div>
+									<div style="margin-left: 40px;">
+										<h4 class="m-0" style="color: olivedrab !important;">Comentarios:</h4>
+										<p class="text-muted"> * Excelente especialista!!</p>
+										<p class="text-muted"> * Una gran persona y un muy buen profesional...</p>
+									</div>
+								</div>
+							</mat-card-content>
+							<div class="button-row">
+								<button mat-raised-button color="primary" matStepperPrevious>Back</button>
+								<!-- <button mat-raised-button color="accent" matStepperNext>Next</button> -->
+							</div>
+						</form>
+					</mat-step>
+				</mat-horizontal-stepper>
+
+			</mat-card-content>
+		</mat-card>
+	</div>
+</div>

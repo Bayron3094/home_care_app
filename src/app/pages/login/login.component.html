@@ -1,0 +1,76 @@
+<div class="login-register" style="background-image:url(assets/images/background/auth-bg.jpg);">
+    <div class="login-register-box">
+        <mat-card>
+            <mat-card-content>
+                <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                    <div class="text-center">
+                        <img alt="homepage" src="assets/images/logo_dvt.png">
+                        <h4 class="m-t-0">Bienvenido a Davinci MarketPlace</h4>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-12 m-t-10 text-center">
+                                    <div class="social">
+                                        <a href="javascript:void(0)" id="googleBtn" mat-raised-button color="primary"
+                                            data-toggle="tooltip" title=""
+                                            data-original-title="Inicie sesión con Google">
+                                            <i aria-hidden="true" class="google"></i> Ingresa con tu cuenta de Google
+                                            Corporativa
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="text-center">
+                        <h4 class="m-t-0">O ingresa con tu cuenta local</h4>
+                    </div>
+                    <div fxLayout="row wrap">
+                        <!-- col full-->
+                        <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+                            <mat-form-field>
+                                <input matInput placeholder="Usuario" [formControl]="form.controls['uname']">
+                            </mat-form-field>
+                            <small *ngIf="form.controls['uname'].hasError('required') && form.controls['uname'].touched"
+                                class="text-danger support-text">Usuario es obligatorio.</small>
+                        </div>
+                        <!-- col full-->
+                        <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+                            <mat-form-field>
+                                <input matInput type="password" placeholder="Contraseña"
+                                    [formControl]="form.controls['password']">
+                            </mat-form-field>
+                            <small
+                                *ngIf="form.controls['password'].hasError('required') && form.controls['password'].touched"
+                                class="text-danger support-text">Contraseña es obligatoria.</small>
+                        </div>
+                        <!-- col half-->
+                        <div fxFlex.gt-sm="50" fxFlex.gt-xs="50">
+                            <mat-checkbox color="warn">Recordarmeme</mat-checkbox>
+                        </div>
+                        <!-- col half-->
+                        <div fxFlex.gt-sm="50" fxFlex.gt-xs="50" class="text-right">
+                            <a [routerLink]="['/authentication/forgot']" class="link">¿Olvidó su Contraseña?</a>
+                        </div>
+                        <!-- col full-->
+                        <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+                            <button mat-raised-button color="primary" class="btn-block btn-lg m-t-20 m-b-20"
+                                type="submit" [disabled]="!form.valid">Login</button>
+                        </div>
+                        <!-- col full-->
+                        <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100" class="text-center">
+                            <span>¿No tienes una cuenta?
+                                <a [routerLink]="['/authentication/register']" class="text-info link">Registrarse</a>
+                            </span>
+                        </div>
+                    </div>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
+
+
+
