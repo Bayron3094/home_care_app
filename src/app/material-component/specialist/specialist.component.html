@@ -10,9 +10,9 @@
 					<mat-step [stepControl]="firstFormGroup">
 						<form [formGroup]="firstFormGroup">
 							<ng-template matStepLabel>Especialidad</ng-template>
-							<mat-form-field>
+							<mat-form-field style="max-width: 60% !important;">
 								<!-- <input matInput placeholder="Last name, First name" formControlName="errorfirstCtrl" required> -->
-								<input type="text" placeholder="Selecciona una" aria-label="Number" matInput required
+								<input type="text" placeholder="Selecciona una especialidad..." aria-label="Number" matInput required
 									formControlName="firstCtrl" [matAutocomplete]="auto">
 								<mat-autocomplete #auto="matAutocomplete">
 									<mat-option *ngFor="let option of filteredOptions | async" [value]="option">
@@ -32,7 +32,7 @@
 					</mat-step>
 					<mat-step [stepControl]="secondFormGroup" errorMessage="Address is required.">
 						<form [formGroup]="secondFormGroup">
-							<ng-template matStepLabel>Especialistas</ng-template>
+							<ng-template matStepLabel>Detalles</ng-template>
 							<mat-card-content>
 								<div class="d-flex no-blcok" *ngFor="let doctor of listDoctor">
 									<div class="m-r-20">

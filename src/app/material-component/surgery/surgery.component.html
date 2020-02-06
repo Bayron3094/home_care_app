@@ -1,1 +1,61 @@
-<p>surgery works!</p>
+<div fxLayout="row" fxLayoutWrap="wrap">
+    <!-- Card column -->
+    <div fxFlex.gt-sm="100%" fxFlex="100">
+        <mat-card>
+            <mat-card-content>
+                <mat-card-title class="m-t-3">Cotizar servicios de cirugía</mat-card-title>
+                <mat-card-subtitle>Programación de cirugía </mat-card-subtitle>
+
+                <mat-horizontal-stepper linear #steppererror>
+                    <mat-step [stepControl]="firstFormGroup">
+                        <form [formGroup]="firstFormGroup">
+                            <ng-template matStepLabel>Cirugías</ng-template>
+                            <mat-form-field style="max-width: 60% !important;">
+                                <!-- <input matInput placeholder="Last name, First name" formControlName="errorfirstCtrl" required> -->
+                                <input type="text" placeholder="Selecciona el tipo de cirugía" aria-label="Number"
+                                    matInput required formControlName="firstCtrl" [matAutocomplete]="auto">
+                                <mat-autocomplete #auto="matAutocomplete">
+                                    <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                                        {{option}}
+                                    </mat-option>
+                                </mat-autocomplete>
+                                <mat-error *ngIf="firstFormGroup.controls['firstCtrl'].errors?.required">
+                                    el tipo de cirugía es requerido.
+                                </mat-error>
+                            </mat-form-field>
+                            <div style="margin-top: 5px;">
+                                <button mat-raised-button [disabled]="firstFormGroup.invalid" color="accent"
+                                    matStepperNext (click)="selected()">Continuar</button>
+                            </div>
+                        </form>
+                    </mat-step>
+                    <mat-step [stepControl]="secondFormGroup" errorMessage="Address is required.">
+                        <form [formGroup]="secondFormGroup">
+                            <ng-template matStepLabel>Especialistas</ng-template>
+                            <mat-card-content>
+                                <div style="display: block;">
+                                    <mat-form-field style="max-width: 25%;">
+                                        <input matInput [matDatepicker]="picker" placeholder="Fecha" formControlName="secondCtrl" required>
+                                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker></mat-datepicker>
+                                    </mat-form-field>
+                                    <mat-form-field style="max-width: 20%; margin-left: 15px;">
+                                        <input type="time" matInput placeholder="Hora" formControlName="secondCtrl" required>
+                                    </mat-form-field>
+                                    <mat-form-field style="max-width: 40%; margin-left: 15px;">
+                                        <input matInput placeholder="EPS" formControlName="secondCtrl" required>
+                                    </mat-form-field>
+                                </div>
+                            </mat-card-content>
+                            <div class="button-row">
+                                <button mat-raised-button color="default" matStepperPrevious>Back</button>
+                                <button mat-raised-button color="accent">Verificar</button>
+                            </div>
+                        </form>
+                    </mat-step>
+                </mat-horizontal-stepper>
+
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

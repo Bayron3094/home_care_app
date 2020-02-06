@@ -1,1 +1,126 @@
-<p>house works!</p>
+<div fxLayout="row" fxLayoutWrap="wrap">
+    <!-- Card column -->
+    <div fxFlex.gt-sm="100%" fxFlex="100">
+        <mat-card>
+            <mat-card-content>
+                <mat-card-title>Solicita tu medico en casa <span
+                        class="bg-success text-white rounded font-12 pl-5 pr-5">New</span></mat-card-title>
+                <mat-card-subtitle>Por favor llena cuidadosamente los datos.</mat-card-subtitle>
+
+                <mat-vertical-stepper #steppervarient class="m-t-20">
+                    <mat-step [stepControl]="firstFormGroup">
+                        <form [formGroup]="firstFormGroup">
+                            <ng-template matStepLabel>Datos personales</ng-template>
+                            <div style="display: block;">
+                                <mat-form-field style="max-width: 35%;">
+                                    <input matInput placeholder="Nombres" formControlName="firstCtrl" required>
+                                </mat-form-field>
+                                <mat-form-field style="max-width: 35%; margin-left: 15px;">
+                                    <input matInput placeholder="Apellidos" formControlName="firstCtrl" required>
+                                </mat-form-field>
+                                <mat-form-field style="max-width: 20%; margin-left: 15px;">
+                                    <input matInput placeholder="N° cédula" formControlName="firstCtrl" required>
+                                </mat-form-field>
+                            </div>
+                            <div style="display: block;">
+                                <mat-form-field style="max-width: 20%;">
+                                    <input matInput placeholder="Fecha nacimiento" formControlName="firstCtrl" required>
+                                </mat-form-field>
+                                <mat-form-field style="max-width: 20%; margin-left: 15px;">
+                                    <input matInput placeholder="celular" formControlName="firstCtrl" required>
+                                </mat-form-field>
+                                <mat-form-field style="max-width: 30%; margin-left: 15px;">
+                                    <input matInput placeholder="Barrio" formControlName="firstCtrl" required>
+                                </mat-form-field>
+                                <mat-form-field style="max-width: 25%; margin-left: 15px;">
+                                    <input matInput placeholder="Dirección" formControlName="firstCtrl" required>
+                                </mat-form-field>
+                            </div>
+                            <div>
+                                <button mat-raised-button matStepperNext color="accent">Continuar</button>
+                            </div>
+                        </form>
+                    </mat-step>
+                    <mat-step [stepControl]="secondFormGroup">
+                        <form [formGroup]="secondFormGroup">
+                            <ng-template matStepLabel>Elige el servicio requerido</ng-template>
+                            <div style="display: block;">
+                                <mat-form-field style="max-width: 45%;">
+                                    <input type="text" placeholder="Especialista..." aria-label="Number" matInput
+                                        required formControlName="secondCtrlDoctor" [matAutocomplete]="autoDoc"
+                                        [(ngModel)]="selection" (ngModelChange)="selectSpeci($event)">
+                                    <mat-autocomplete #autoDoc="matAutocomplete">
+                                        <mat-option *ngFor="let option of filteredDoctors | async"
+                                            [value]="option.name">
+                                            {{option.name}} - {{option.specialty}}
+                                        </mat-option>
+                                    </mat-autocomplete>
+                                </mat-form-field>
+                                <mat-form-field style="max-width: 35%; margin-left: 15px;">
+                                    <input matInput placeholder="Especialidad" formControlName="secondCtrlEspec"
+                                        required [(ngModel)]="specialtySelect">
+                                </mat-form-field>
+                            </div>
+                            <div style="display: block;">
+                                <mat-form-field style="max-width: 25%;">
+                                    <input matInput [matDatepicker]="picker" placeholder="Fecha"
+                                        formControlName="secondCtrlDoctor" required>
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>
+                                </mat-form-field>
+                                <mat-form-field style="max-width: 20%; margin-left: 15px;">
+                                    <input type="time" matInput placeholder="Hora" formControlName="secondCtrlDoctor"
+                                        required>
+                                </mat-form-field>
+                                <mat-form-field style="max-width: 40%; margin-left: 15px;">
+                                    <input matInput placeholder="EPS" formControlName="secondCtrlDoctor" required>
+                                </mat-form-field>
+                            </div>
+                            <div style="display: block;">
+                                <mat-form-field style="max-width: 20%;">
+                                    <mat-label>Regimen</mat-label>
+                                    <mat-select>
+                                        <mat-option *ngFor="let regime of regimeList" [value]="regime" required>
+                                            {{regime}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                                <mat-form-field style="max-width: 40%; margin-left: 15px;">
+                                    <mat-label>Necesidad del servicio</mat-label>
+                                    <mat-select [formControl]="serviceControl" required>
+                                        <mat-option *ngFor="let service of serviceList" [value]="service">
+                                            {{service}}
+                                        </mat-option>
+                                    </mat-select>
+                                    <!-- <mat-select>
+                                        <mat-option *ngFor="let service of serviceList" [(value)]="service">
+                                            {{service}}
+                                        </mat-option>
+                                    </mat-select> -->
+                                </mat-form-field>
+                                <mat-form-field *ngIf="serviceControl.value == 'Remisión'"
+                                    style="max-width: 30%; margin-left: 15px;">
+
+                                    <input matInput placeholder="Número de remisión" formControlName="secondCtrlDoctor"
+                                        required>
+                                </mat-form-field>
+                            </div>
+                            <div class="button-row">
+                                <button mat-raised-button color="primary" matStepperPrevious>Volver</button>
+                                <button mat-raised-button color="accent" matStepperNext>Finalizar</button>
+                            </div>
+                        </form>
+                    </mat-step>
+                    <mat-step>
+                        <ng-template matStepLabel>Finalizado</ng-template>
+                        <p style="padding: 5px;">El medico ha sido agendado exitosamente.</p>
+                        <div class="button-row">
+                            <button mat-raised-button color="primary" matStepperPrevious>Volver</button>
+                            <button mat-raised-button color="warn" (click)="steppervarient.reset()">Reiniciar</button>
+                        </div>
+                    </mat-step>
+                </mat-vertical-stepper>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
